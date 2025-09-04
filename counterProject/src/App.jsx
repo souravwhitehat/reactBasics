@@ -9,10 +9,19 @@ let  [counter , setCounter] = useState(15)
   function increase(){
     console.log("clicked",Math.random());
     if (counter<20) {
-      setCounter(counter+1)  
       
+      setCounter(counter+1)  
+      //     setCounter(counter+1)  
+      //     setCounter(counter+1)  
+      //     setCounter(counter+1)  
     }
   }
+  //functional update.......Important....
+  // setCounter(prev=>prev+1)  
+  // setCounter(prev=>prev+1)  
+  // setCounter(prev=>prev+1)  
+  // setCounter(prev=>prev+1)  
+      
   function decrease(){
     console.log("clicked",Math.random());
     if (counter>0) {
