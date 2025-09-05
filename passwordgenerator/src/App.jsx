@@ -13,15 +13,28 @@ function App() {
     if (char) str += "@#$%^@%^&"
 
     for (let i = 1; i <= length; i++) {
-      let randomChar = Math.floor(Math.random() * str.length)  // ✅ fixed
+      let randomChar = Math.floor(Math.random() * str.length)
       password += str.charAt(randomChar)
     }
-    setpass(password)  // ✅ fixed
-  }, [length, num, char])  // ✅ fixed dependencies
+    setpass(password)
+  }, [length, num, char])
 
   useEffect(() => {
     passwordGenarator()
   }, [length, num, char, passwordGenarator])
+
+  // ✅ Copy function
+  const copyPasswordToClipboard = () => {
+    if (pass) {
+      navigator.clipboard.writeText(pass)
+        .then(() => {
+          alert("Password copied to clipboard ✅")
+        })
+        .catch(() => {
+          alert("Failed to copy ❌")
+        })
+    }
+  }
 
   return (
     <div className='w-full max-w-md mx-auto shadow-md rounded-lg px-4 my-8 text-orange-500 bg-gray-500'>
@@ -34,7 +47,12 @@ function App() {
           placeholder='password'
           readOnly
         />
-        <button className='outline-none bg-blue-500 text-white px-3 py-0.5 shrink-0'>Copy</button>
+        <button
+          onClick={copyPasswordToClipboard}   // ✅ copy function call
+          className='outline-none bg-blue-500 text-white px-3 py-0.5 shrink-0'
+        >
+          Copy
+        </button>
       </div>
 
       <div className='flex text-sm gap-x-3'>
